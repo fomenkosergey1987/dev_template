@@ -1,0 +1,78 @@
+@import './variables';
+
+@mixin adaptiveValue($property, $startSize, $minSize, $startPosition:0, $endPosition:0, $type:1){
+
+  $deltaValue: $startSize - $minSize;
+  #{$property}: #{$startSize + px};
+  @if ( $type == 1) {
+    @if ($startPosition == 0) {
+      @media (max-width: $pc) {
+        #{$property}: calc(#{$minSize + px} + #{$deltaValue} * ((100vw - #{$mobileSmall}) / (1200 - 320)));
+      }
+      @media (max-width: #{$mobileSmall}) {
+        #{$property}: #{$minSize + px};
+      }
+    } @else {
+      @media (max-width: #{$startPosition +px}) {
+        #{$property}: calc(#{$minSize + px} + #{$deltaValue} * ((100vw - #{$endPosition + px}) / (#{$startPosition} - #{$endPosition})));
+      }
+      @media (max-width: #{$endPosition +px}) {
+        #{$property}: #{$minSize +px};
+      }
+    }
+  } @else {
+      @if ($startPosition == 0) {
+        @media (min-width: $pc) {
+          #{$property}: calc(#{$minSize + px} + #{$deltaValue} * ((100vw - #{$mobileSmall}) / (1200 - 320)));
+        }
+        @media (min-width: #{$mobileSmall}) {
+          #{$property}: #{$minSize + px};
+        }
+      } @else {
+        @media (min-width: #{$startPosition +px}) {
+          #{$property}: calc(#{$minSize + px} + #{$deltaValue} * ((100vw - #{$endPosition + px}) / (#{$startPosition} - #{$endPosition})));
+        }
+        @media (min-width: #{$endPosition +px}) {
+          #{$property}: #{$minSize +px};
+        }
+      }
+  }
+
+}
+// Calc px to rem
+@function rem($size) {
+  $remSize: calc(#{$size} / #{$fz});
+  @return #{$remSize + rem};
+}
+
+$browser-context: 16; // Default
+
+@function em($pixels, $context: $browser-context) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1em;
+}
+@mixin clearFix(){
+  &:before,
+  &:after{
+    content: " ";
+    display: table;
+  }
+
+  &:after{
+    display: block;
+    clear: both;
+    height: 1px;
+    margin-top: -1px;
+    visibility: hidden;
+  }
+  &{
+    *zoom: 1;
+  }
+}

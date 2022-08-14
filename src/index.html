@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%= require('html-loader!./head.html').default %>
+<body>
+  <div class="wrapper">
+    <%= require('html-loader!./header.html').default %>
+    <main class="page">
+      <%= require('html-loader!./home.html').default %>
+    </main>
+    <%= require('html-loader!./footer.html').default %>
+  </div>
+  <%= require('html-loader!./popup.html').default %>
+</body>
+</html>

@@ -1,0 +1,29 @@
+//font size for rm and em
+$fz: 16;
+// основные цвета!!
+$mainColor: #000000;
+$prime-color: #141414;
+$ghost-color: #ABABAB;
+$prime-orange: #E8AA31;
+$hover-orange: #d59e28;
+
+$max-width: 1920px;
+//Минимальная ширина страницы
+$min-width: 360px;
+
+//Ширина ограничевающего контента
+$maxWidthContainer: 1520px;
+//общий отступ у контейнера
+$containerPadding: 30px;
+//тип Верстки
+//1 - простая , 2 - сложная
+$responsiveType: 2;
+//Ширина срабатывания первого брейкпоинта
+$containerWidth: $maxWidthContainer + $containerPadding;
+//БРЕЙКПОИТЫ
+//TODO: replase px to em
+$pc: $containerWidth;
+$tablet: 991.98px;
+$mobile: 767.98px;
+$mobileSmall: 479.98px;
+

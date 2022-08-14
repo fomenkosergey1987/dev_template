@@ -1,0 +1,9 @@
+[data-spoilers]._init{
+  [class*="__title"]{
+    cursor: pointer;
+    float: right;
+  }
+  ._active{
+    transform: rotate(-90deg);
+  }
+}
